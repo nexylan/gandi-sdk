@@ -19,7 +19,7 @@ namespace Nexy\Gandi\Api;
 final class Domain extends AbstractApi
 {
     /**
-     * @param array $domain
+     * @param array      $domain
      * @param array|null $options
      *
      * @return array
@@ -50,7 +50,7 @@ final class Domain extends AbstractApi
     }
 
     /**
-     * @param array $domain
+     * @param array      $domain
      * @param array|null $options
      *
      * @return array

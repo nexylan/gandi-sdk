@@ -44,8 +44,8 @@ final class Gandi
 
     /**
      * @param HttpClient $httpClient
-     * @param string $apiUrl
-     * @param string $apiKey
+     * @param string     $apiUrl
+     * @param string     $apiKey
      */
     public function __construct(HttpClient $httpClient, string $apiUrl, string $apiKey)
     {
