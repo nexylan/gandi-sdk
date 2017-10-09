@@ -18,7 +18,7 @@ use Nexy\Gandi\Gandi;
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
-class AbstractApi
+abstract class AbstractApi
 {
     /**
      * @var Gandi

@@ -16,7 +16,7 @@ namespace Nexy\Gandi\Api;
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
-class Catalog extends AbstractApi
+final class Catalog extends AbstractApi
 {
     /**
      * Return the wanted catalog entries.
@@ -27,7 +27,7 @@ class Catalog extends AbstractApi
      *
      * @return object
      */
-    public function catalogList(array $options, $currency = 'EUR', $grid = 'A')
+    public function catalogList(array $options, string $currency = 'EUR', string $grid = 'A')
     {
         return $this->gandi->setup()->catalog->list($options, $currency, $grid);
     }

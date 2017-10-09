@@ -16,11 +16,11 @@ namespace Nexy\Gandi\Api;
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
-class Domain extends AbstractApi
+final class Domain extends AbstractApi
 {
     /**
      * @param array $domain
-     * @param array $options
+     * @param array|null $options
      *
      * @return array
      */
@@ -44,7 +44,7 @@ class Domain extends AbstractApi
      *
      * @return array
      */
-    public function info($domain): array
+    public function info(string $domain): array
     {
         return $this->gandi->setup()->domain->info($domain);
     }
@@ -54,18 +54,18 @@ class Domain extends AbstractApi
      *
      * @return object
      */
-    public function getList(array $options)
+    public function getList(array $options): void
     {
         return $this->gandi->setup()->domain->list($options);
     }
 
     /**
      * @param array $domain
-     * @param array $options
+     * @param array|null $options
      *
      * @return object
      */
-    public function renew(array $domain, array $options = null)
+    public function renew(array $domain, array $options = null): void
     {
         return $this->gandi->setup()->domain->renew($domain, $options);
     }

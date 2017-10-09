@@ -16,7 +16,7 @@ namespace Nexy\Gandi\Api;
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
-class Contact extends AbstractApi
+final class Contact extends AbstractApi
 {
     /**
      * @param array|null $options
@@ -29,11 +29,11 @@ class Contact extends AbstractApi
     }
 
     /**
-     * @param $handle
+     * @param string $handle
      *
      * @return bool|\Exception
      */
-    public function delete($handle)
+    public function delete(string $handle): void
     {
         $response = $this->gandi->setup()->contact->delete($handle);
 
@@ -47,9 +47,9 @@ class Contact extends AbstractApi
     /**
      * @param string $handle
      *
-     * @return object
+     * @return void
      */
-    public function info($handle)
+    public function info(string $handle): void
     {
         return $this->gandi->setup()->contact->info($handle);
     }

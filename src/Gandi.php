@@ -29,7 +29,7 @@ final class Gandi
     /**
      * @var string
      */
-    private $serverUrl;
+    private $apiUrl;
 
     /**
      * @var string
@@ -37,12 +37,12 @@ final class Gandi
     private $apiKey;
 
     /**
-     * @param $serverUrl
+     * @param $apiUrl
      * @param $apiKey
      */
-    public function __construct($serverUrl, $apiKey)
+    public function __construct(string $apiUrl, string $apiKey)
     {
-        $this->serverUrl = $serverUrl;
+        $this->apiUrl = $apiUrl;
         $this->apiKey = $apiKey;
     }
 
@@ -52,7 +52,7 @@ final class Gandi
      *
      * @return AbstractApi
      */
-    public function __call($name, $arguments): AbstractApi
+    public function __call(string $name, array $arguments): AbstractApi
     {
         try {
             return $this->api(ucfirst(str_replace('api', '', $name)));
@@ -70,7 +70,7 @@ final class Gandi
     {
         $httpClient = new HttpClient();
         $client = new FxmlrpcClient(
-            $this->serverUrl,
+            $this->apiUrl,
             new HttpAdapterTransport(
                 new GuzzleMessageFactory(),
                 new GuzzleClient($httpClient)

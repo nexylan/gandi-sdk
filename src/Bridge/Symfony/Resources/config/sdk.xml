@@ -6,7 +6,7 @@
 
     <services>
         <service id="nexy_gandi.sdk" class="Nexy\Gandi\Gandi">
-            <argument>%nexy_gandi.server_url%</argument>
+            <argument>%nexy_gandi.api_url%</argument>
             <argument>%nexy_gandi.api_key%</argument>
         </service>
     </services>
