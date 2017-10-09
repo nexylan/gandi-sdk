@@ -1,4 +1,5 @@
 language: php
+
 php:
   - '7.1'
 
@@ -11,6 +12,10 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
+
+before_install:
+  - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
+  - composer global require satooshi/php-coveralls:@stable codeclimate/php-test-reporter:@stable --no-update
 
 install:
   - composer global update --no-interaction
