@@ -17,6 +17,12 @@ Check it for a specific versions:
 
 * [__0.x__](https://github.com/nexylan/gandi-sdk/tree/master)
 
+## Prerequisites
+
+The project requires:
+
+* PHP 7.1+
+
 ## Installation
 
 First of all, you need to require this library through Composer:
@@ -25,4 +31,30 @@ First of all, you need to require this library through Composer:
 composer require nexylan/gandi-sdk
 ```
 
-After this, you can use it as is.
+With Symfony:
+
+* Register the bundle
+
+```php
+new Nexy\Gandi\Bridge\Symfony\Bundle\NexyGandiBundle()
+```
+
+* In your `config.yml`
+
+```yaml
+nexy_gandi:
+    # Change to https://rpc.gandi.net/xmlrpc/ in prod
+    server_url: https://rpc.ote.gandi.net/xmlrpc/
+    api_key: 'youApiKey'
+```
+
+## Usage
+
+Use the predefined methods and/or use Gandi methods directly
+
+```php
+$gandi = new Gandi('server_url', 'api_key');
+
+# $gandi->setup()->proxyName->methodName(params);
+$gandi->setup()->domain->info('mydomain.net');
+```

@@ -11,8 +11,13 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "guzzlehttp/psr7": "^1.0",
+        "lstrojny/fxmlrpc": "^0.14.0",
+        "php-http/guzzle6-adapter": "^1.1",
+        "php-http/message": "^1.5"
     },
+    "prefer-stable": true,
     "config": {
         "sort-packages": true
     },
@@ -28,6 +33,12 @@
         }
     },
     "require-dev": {
-        "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+        "sllh/php-cs-fixer-styleci-bridge": "^2.1",
+        "symfony/dependency-injection": "^2.8 || ^3.0",
+        "symfony/http-kernel": "^2.8 || ^3.0"
+    },
+    "suggest": {
+        "symfony/http-kernel": "For Symfony integration as a bundle",
+        "symfony/dependency-injection": "For Symfony integration as a bundle"
     }
 }
