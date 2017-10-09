@@ -2,6 +2,24 @@ language: php
 php:
   - '7.1'
 
-install:
-  composer install
+env:
+  global:
+    - PATH="$HOME/.composer/vendor/bin:$PATH"
 
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+install:
+  - composer global update --prefer-dist --no-interaction
+  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+
+script:
+  - composer validate
+  - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
+
+after_script:
+  - coveralls -v
+  - test-reporter
