@@ -1,0 +1,33 @@
+{
+    "name": "nexylan/gandi-sdk",
+    "description": "PHP sdk to communicate with the Gandi API",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["Gandi", "API", "Symfony"],
+    "authors": [
+        {
+            "name": "Jérôme Pogeant",
+            "email": "p-jerome@hotmail.fr"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": { "Nexy\\Gandi\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Nexy\\Gandi\\Tests\\": "tests" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.x-dev"
+        }
+    },
+    "require-dev": {
+        "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+    }
+}
