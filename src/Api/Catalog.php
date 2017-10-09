@@ -25,9 +25,9 @@ final class Catalog extends AbstractApi
      * @param string $currency
      * @param string $grid
      *
-     * @return object
+     * @return array
      */
-    public function catalogList(array $options, string $currency = 'EUR', string $grid = 'A')
+    public function catalogList(array $options, string $currency = 'EUR', string $grid = 'A'): array
     {
         return $this->gandi->setup()->catalog->list($options, $currency, $grid);
     }
