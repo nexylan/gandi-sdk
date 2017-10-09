@@ -13,8 +13,8 @@ cache:
     - $HOME/.composer/cache/files
 
 install:
-  - composer global update --prefer-dist --no-interaction
-  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+  - composer global update --no-interaction
+  - composer update --no-interaction $COMPOSER_FLAGS
 
 script:
   - composer validate
