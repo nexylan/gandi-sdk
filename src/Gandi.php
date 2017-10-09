@@ -16,8 +16,9 @@ namespace Nexy\Gandi;
 use fXmlRpc\Client as FxmlrpcClient;
 use fXmlRpc\Proxy;
 use fXmlRpc\Transport\HttpAdapterTransport;
-use GuzzleHttp\Client as HttpClient;
 use Http\Adapter\Guzzle6\Client as GuzzleClient;
+use Http\Client\HttpClient;
+use Http\Discovery\HttpClientDiscovery;
 use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Nexy\Gandi\Api\AbstractApi;
 
@@ -26,6 +27,11 @@ use Nexy\Gandi\Api\AbstractApi;
  */
 final class Gandi
 {
+    /**
+     * @var HttpClient
+     */
+    private $httpClient;
+
     /**
      * @var string
      */
@@ -37,11 +43,13 @@ final class Gandi
     private $apiKey;
 
     /**
-     * @param $apiUrl
-     * @param $apiKey
+     * @param HttpClient $httpClient
+     * @param string $apiUrl
+     * @param string $apiKey
      */
-    public function __construct(string $apiUrl, string $apiKey)
+    public function __construct(HttpClient $httpClient, string $apiUrl, string $apiKey)
     {
+        $this->httpClient = $httpClient ?: HttpClientDiscovery::find();
         $this->apiUrl = $apiUrl;
         $this->apiKey = $apiKey;
     }
@@ -68,12 +76,11 @@ final class Gandi
      */
     public function setup(): Proxy
     {
-        $httpClient = new HttpClient();
         $client = new FxmlrpcClient(
             $this->apiUrl,
             new HttpAdapterTransport(
                 new GuzzleMessageFactory(),
-                new GuzzleClient($httpClient)
+                new GuzzleClient($this->httpClient)
             )
         );
 
