@@ -18,7 +18,7 @@ use Nexy\Gandi\Bridge\Symfony\DependencyInjection\NexyGandiExtension;
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
-class ConfigurationTest extends AbstractExtensionConfigurationTestCase
+final class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 {
     public function testMinimalConfigurationProcess()
     {

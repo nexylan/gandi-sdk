@@ -14,7 +14,7 @@ cache:
     - $HOME/.composer/cache/files
 
 before_install:
-  - composer global require satooshi/php-coveralls:@stable codeclimate/php-test-reporter:@stable --no-update
+  - composer global require satooshi/php-coveralls:@stable phpunit/phpunit:@stable --no-update
 
 install:
   - composer global update --no-interaction
@@ -22,8 +22,4 @@ install:
 
 script:
   - composer validate
-  - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
-
-after_script:
-  - coveralls -v
-  - test-reporter
+  - phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml

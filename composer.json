@@ -17,7 +17,6 @@
         "php-http/client-implementation": "^1.0",
         "php-http/discovery": "^1.0"
     },
-    "prefer-stable": true,
     "config": {
         "sort-packages": true
     },
@@ -36,7 +35,6 @@
         "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.5",
-        "phpunit/phpunit": "^5.2",
         "sllh/php-cs-fixer-styleci-bridge": "^2.1",
         "symfony/dependency-injection": "^2.8 || ^3.0",
         "symfony/http-kernel": "^2.8 || ^3.0"
