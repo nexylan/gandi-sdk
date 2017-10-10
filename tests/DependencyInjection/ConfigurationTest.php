@@ -11,35 +11,26 @@
 
 namespace Nexy\SlackBundle\Tests\DependencyInjection;
 
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
+use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Nexy\Gandi\Bridge\Symfony\DependencyInjection\Configuration;
-use Nexy\Gandi\Bridge\Symfony\DependencyInjection\NexyGandiExtension;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
-final class ConfigurationTest extends AbstractExtensionConfigurationTestCase
+final class ConfigurationTest extends TestCase
 {
-    public function testMinimalConfigurationProcess()
+    use ConfigurationTestCaseTrait;
+
+    public function testProcessedValues()
     {
-        $expectedConfiguration = [
-            'api_url' => 'https://rpc.ote.gandi.net/xmlrpc/',
-            'api_key' => 'ThisIsNotTokenChangeIt',
-        ];
-
-        $sources = [
-            __DIR__.'/../Fixtures/config/config.yml',
-        ];
-
-        $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getContainerExtension()
-    {
-        return new NexyGandiExtension();
+        $this->assertProcessedConfigurationEquals([
+            ['api_url' => 'https://rpc.ote.gandi.net/xmlrpc/'],
+            ['api_key' => 'ThisIsNotTokenChangeIt'],
+        ], [
+            'api_url'=> 'https://rpc.ote.gandi.net/xmlrpc/',
+            'api_key'=> 'ThisIsNotTokenChangeIt',
+        ]);
     }
 
     /**
