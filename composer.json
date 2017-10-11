@@ -12,9 +12,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "guzzlehttp/psr7": "^1.0",
-        "lstrojny/fxmlrpc": "^0.14.0",
-        "php-http/discovery": "^1.0"
+        "lstrojny/fxmlrpc": "^0.14.0"
     },
     "config": {
         "sort-packages": true
