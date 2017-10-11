@@ -33,6 +33,7 @@
     },
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^3.0",
+        "php-http/guzzle6-adapter": "^1.1",
         "sllh/php-cs-fixer-styleci-bridge": "^2.1",
         "symfony/dependency-injection": "^2.8 || ^3.0",
         "symfony/http-kernel": "^2.8 || ^3.0"
