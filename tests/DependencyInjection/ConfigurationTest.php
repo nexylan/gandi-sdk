@@ -28,8 +28,8 @@ final class ConfigurationTest extends TestCase
             ['api_url' => 'https://rpc.ote.gandi.net/xmlrpc/'],
             ['api_key' => 'ThisIsNotTokenChangeIt'],
         ], [
-            'api_url'=> 'https://rpc.ote.gandi.net/xmlrpc/',
-            'api_key'=> 'ThisIsNotTokenChangeIt',
+            'api_url' => 'https://rpc.ote.gandi.net/xmlrpc/',
+            'api_key' => 'ThisIsNotTokenChangeIt',
         ]);
     }
 
