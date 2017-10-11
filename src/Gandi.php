@@ -48,19 +48,18 @@ final class Gandi
 
     /**
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return Proxy|AbstractApi
      */
     public function __call(string $name, array $arguments)
     {
         try {
-            if (key_exists(0, $arguments) && $arguments[0] === 'api'){
+            if (array_key_exists(0, $arguments) && $arguments[0] === 'api') {
                 return $this->api(ucfirst(str_replace('api', '', $name)));
             } else {
                 return $this->client->{$name};
             }
-
         } catch (\InvalidArgumentException $e) {
             throw new \BadMethodCallException(sprintf('Undefined method %s', $name));
         }
