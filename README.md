@@ -25,4 +25,61 @@ First of all, you need to require this library through Composer:
 composer require nexylan/gandi-sdk
 ```
 
-After this, you can use it as is.
+With Symfony:
+
+Enable the bundle on the `AppKernel` class:
+
+```php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Nexy\SlackBundle\NexySlackBundle(),
+    );
+
+    // ...
+
+    return $bundles
+}
+```
+
+## Configuration
+
+Configure the bundle to your needs:
+
+```yaml
+# parameters.yml
+parameters:
+    # Change to https://rpc.gandi.net/xmlrpc/ in prod
+    gandi_api_url: https://rpc.ote.gandi.net/xmlrpc/
+```
+
+
+```yaml
+# config.yml
+nexy_gandi:
+    api_url: %gandi_api_url%
+    api_key: 'yourApiKey'
+```
+
+## Usage
+
+Use the predefined methods and/or use Gandi methods directly
+
+```php
+$gandi = new Gandi('api_url', 'api_key');
+
+$result = $gandi->setup()->domain->info('mydomain.net');
+
+// Results
+// [
+//     status => [
+//         0 => clientTransferProhibited
+//     ]
+//     zone_id => 42
+//     fqdn => mydomain.net
+//     // ...
+// ]
+```

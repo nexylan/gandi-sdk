@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "lstrojny/fxmlrpc": "^0.14.0"
     },
     "config": {
         "sort-packages": true
@@ -28,6 +29,12 @@
         }
     },
     "require-dev": {
-        "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+        "matthiasnoback/symfony-config-test": "^3.0",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.1",
+        "symfony/dependency-injection": "^2.8 || ^3.0",
+        "symfony/http-kernel": "^2.8 || ^3.0"
+    },
+    "suggest": {
+        "php-http/httplug-bundle": "For Symfony integration as a bundle with lstrojny/fxmlrpc"
     }
 }

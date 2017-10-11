@@ -1,0 +1,3 @@
+nexy_gandi:
+    api_url: 'https://rpc.ote.gandi.net/xmlrpc/'
+    api_key: 'ThisIsNotTokenChangeIt'
