@@ -23,7 +23,7 @@ abstract class AbstractApi
     /**
      * @var Gandi
      */
-    protected $gandi;
+    private $gandi;
 
     /**
      * @param Gandi $gandi
@@ -31,5 +31,13 @@ abstract class AbstractApi
     public function __construct(Gandi $gandi)
     {
         $this->gandi = $gandi;
+    }
+
+    /**
+     * @return Gandi
+     */
+    public function getGandi(): Gandi
+    {
+        return $this->gandi;
     }
 }

@@ -25,7 +25,7 @@ final class Contact extends AbstractApi
      */
     public function create(array $options = null): array
     {
-        return $this->gandi->getClient()->contact->create($options);
+        return $this->getGandi()->getClient()->contact->create($options);
     }
 
     /**
@@ -33,9 +33,9 @@ final class Contact extends AbstractApi
      *
      * @return bool
      */
-    public function delete(string $handle)
+    public function delete(string $handle): bool
     {
-        return $this->gandi->getClient()->contact->delete($handle);
+        return $this->getGandi()->getClient()->contact->delete($handle);
     }
 
     /**
@@ -45,6 +45,6 @@ final class Contact extends AbstractApi
      */
     public function info(string $handle): array
     {
-        return $this->gandi->getClient()->contact->info($handle);
+        return $this->getGandi()->getClient()->contact->info($handle);
     }
 }

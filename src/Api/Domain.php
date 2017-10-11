@@ -26,7 +26,7 @@ final class Domain extends AbstractApi
      */
     public function isAvailable(array $domain, array $options = null): array
     {
-        return $this->gandi->getClient()->domain->available($domain, $options);
+        return $this->getGandi()->getClient()->domain->available($domain, $options);
     }
 
     /**
@@ -36,7 +36,7 @@ final class Domain extends AbstractApi
      */
     public function info(string $domain): array
     {
-        return $this->gandi->getClient()->domain->info($domain);
+        return $this->getGandi()->getClient()->domain->info($domain);
     }
 
     /**
@@ -46,7 +46,7 @@ final class Domain extends AbstractApi
      */
     public function getList(array $options): array
     {
-        return $this->gandi->getClient()->domain->list($options);
+        return $this->getGandi()->getClient()->domain->list($options);
     }
 
     /**
@@ -57,6 +57,6 @@ final class Domain extends AbstractApi
      */
     public function renew(array $domain, array $options = null): array
     {
-        return $this->gandi->getClient()->domain->renew($domain, $options);
+        return $this->getGandi()->getClient()->domain->renew($domain, $options);
     }
 }
