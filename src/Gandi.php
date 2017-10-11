@@ -15,11 +15,6 @@ namespace Nexy\Gandi;
 
 use fXmlRpc\Client as FxmlrpcClient;
 use fXmlRpc\Proxy;
-use fXmlRpc\Transport\HttpAdapterTransport;
-use Http\Adapter\Guzzle6\Client as GuzzleClient;
-use Http\Client\HttpClient;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Nexy\Gandi\Api\AbstractApi;
 
 /**
@@ -28,67 +23,47 @@ use Nexy\Gandi\Api\AbstractApi;
 final class Gandi
 {
     /**
-     * @var HttpClient
-     */
-    private $httpClient;
-
-    /**
      * @var string
      */
-    private $apiUrl;
+    private $apiUrl = 'https://rpc.ote.gandi.net/xmlrpc/';
 
     /**
-     * @var string
+     * @var Proxy
      */
-    private $apiKey;
+    private $client;
 
     /**
-     * @param HttpClient $httpClient
-     * @param string     $apiUrl
-     * @param string     $apiKey
+     * @param FxmlrpcClient $xmlClient
+     * @param string        $apiUrl
+     * @param string        $apiKey
      */
-    public function __construct(HttpClient $httpClient, string $apiUrl, string $apiKey)
+    public function __construct(string $apiKey, ?string $apiUrl = null, FxmlrpcClient $xmlClient = null)
     {
-        $this->httpClient = $httpClient ?: HttpClientDiscovery::find();
-        $this->apiUrl = $apiUrl;
-        $this->apiKey = $apiKey;
+        $xmlClient = $xmlClient ?: new FxmlrpcClient();
+        $xmlClient->setUri($this->apiUrl);
+        $xmlClient->prependParams([$apiKey]);
+
+        $this->client = new Proxy($xmlClient);
     }
 
     /**
      * @param string $name
-     * @param array  $arguments
+     * @param array $arguments
      *
-     * @return AbstractApi
+     * @return Proxy|AbstractApi
      */
-    public function __call(string $name, array $arguments): AbstractApi
+    public function __call(string $name, array $arguments)
     {
         try {
-            return $this->api(ucfirst(str_replace('api', '', $name)));
+            if (key_exists(0, $arguments) && $arguments[0] === 'api'){
+                return $this->api(ucfirst(str_replace('api', '', $name)));
+            } else {
+                return $this->client->{$name};
+            }
+
         } catch (\InvalidArgumentException $e) {
             throw new \BadMethodCallException(sprintf('Undefined method %s', $name));
         }
-    }
-
-    /**
-     * Return Gandi proxy.
-     *
-     * @return Proxy
-     */
-    public function setup(): Proxy
-    {
-        $client = new FxmlrpcClient(
-            $this->apiUrl,
-            new HttpAdapterTransport(
-                new GuzzleMessageFactory(),
-                new GuzzleClient($this->httpClient)
-            )
-        );
-
-        $client->prependParams([$this->apiKey]);
-
-        $proxy = new Proxy($client);
-
-        return $proxy;
     }
 
     /**
