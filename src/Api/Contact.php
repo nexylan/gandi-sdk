@@ -25,23 +25,17 @@ final class Contact extends AbstractApi
      */
     public function create(array $options = null): array
     {
-        return $this->gandi->contact()->create($options);
+        return $this->gandi->getClient()->contact->create($options);
     }
 
     /**
      * @param string $handle
      *
-     * @return bool|\Exception
+     * @return bool
      */
     public function delete(string $handle)
     {
-        $response = $this->gandi->contact()->delete($handle);
-
-        if (false === $response) {
-            return new \Exception('Cannot delete this contact');
-        } else {
-            return $response;
-        }
+        return $this->gandi->getClient()->contact->delete($handle);
     }
 
     /**
@@ -51,6 +45,6 @@ final class Contact extends AbstractApi
      */
     public function info(string $handle): array
     {
-        return $this->gandi->contact()->info($handle);
+        return $this->gandi->getClient()->contact->info($handle);
     }
 }
