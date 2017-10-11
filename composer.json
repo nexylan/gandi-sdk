@@ -33,14 +33,11 @@
     },
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^3.0",
-        "php-http/guzzle6-adapter": "^1.1",
-        "php-http/message": "^1.5",
         "sllh/php-cs-fixer-styleci-bridge": "^2.1",
         "symfony/dependency-injection": "^2.8 || ^3.0",
         "symfony/http-kernel": "^2.8 || ^3.0"
     },
     "suggest": {
-        "php-http/httplug-bundle": "For Symfony integration as a bundle",
-        "symfony/http-kernel": "For Symfony integration as a bundle"
+        "php-http/httplug-bundle": "For Symfony integration as a bundle"
     }
 }

@@ -25,7 +25,7 @@ final class Gandi
     /**
      * @var string
      */
-    private $apiUrl = 'https://rpc.ote.gandi.net/xmlrpc/';
+    private $apiUrl = 'https://rpc.gandi.net/xmlrpc/';
 
     /**
      * @var Proxy
