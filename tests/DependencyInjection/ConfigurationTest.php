@@ -27,9 +27,11 @@ final class ConfigurationTest extends TestCase
         $this->assertProcessedConfigurationEquals([
             ['api_url' => 'https://rpc.ote.gandi.net/xmlrpc/'],
             ['api_key' => 'ThisIsNotTokenChangeIt'],
+            ['default_contact' => 'defaultContact'],
         ], [
             'api_url' => 'https://rpc.ote.gandi.net/xmlrpc/',
             'api_key' => 'ThisIsNotTokenChangeIt',
+            'default_contact' => 'defaultContact',
         ]);
     }
 

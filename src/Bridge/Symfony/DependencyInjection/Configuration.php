@@ -33,6 +33,7 @@ final class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('api_url')->end()
                 ->scalarNode('api_key')->end()
+                ->scalarNode('default_contact')->end()
             ->end()
         ;
 
