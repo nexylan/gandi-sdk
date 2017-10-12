@@ -22,10 +22,7 @@ use Nexy\Gandi\Api\AbstractApi;
  */
 final class Gandi
 {
-    /**
-     * @var string
-     */
-    private $apiUrl = 'https://rpc.gandi.net/xmlrpc/';
+    private const DEFAULT_API_URL = 'https://rpc.gandi.net/xmlrpc/';
 
     /**
      * @var Proxy
@@ -45,7 +42,7 @@ final class Gandi
     public function __construct(string $apiKey, ?string $apiUrl = null, ?FxmlrpcClient $xmlClient = null)
     {
         $xmlClient = $xmlClient ?: new FxmlrpcClient();
-        $xmlClient->setUri($this->apiUrl);
+        $xmlClient->setUri($apiUrl ?: static::DEFAULT_API_URL);
         $xmlClient->prependParams([$apiKey]);
 
         $this->client = new Proxy($xmlClient);
