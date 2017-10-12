@@ -25,11 +25,11 @@ final class ConfigurationTest extends TestCase
     public function testProcessedValues()
     {
         $this->assertProcessedConfigurationEquals([
-            ['api_url' => 'https://rpc.ote.gandi.net/xmlrpc/'],
             ['api_key' => 'ThisIsNotTokenChangeIt'],
+            ['api_url' => 'https://rpc.ote.gandi.net/xmlrpc/'],
         ], [
-            'api_url' => 'https://rpc.ote.gandi.net/xmlrpc/',
             'api_key' => 'ThisIsNotTokenChangeIt',
+            'api_url' => 'https://rpc.ote.gandi.net/xmlrpc/',
         ]);
     }
 

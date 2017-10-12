@@ -33,8 +33,8 @@ final class NexyGandiExtension extends Extension
             $configs
         );
 
-        $container->setParameter('nexy_gandi.api_url', $config['api_url']);
         $container->setParameter('nexy_gandi.api_key', $config['api_key']);
+        $container->setParameter('nexy_gandi.api_url', $config['api_url']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('sdk.xml');
