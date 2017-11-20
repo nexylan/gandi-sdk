@@ -18,6 +18,10 @@ use fXmlRpc\Proxy;
 use Nexy\Gandi\Api\AbstractApi;
 
 /**
+ * @method Api\Catalog catalog
+ * @method Api\Contact contact
+ * @method Api\Domain domain
+ *
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
 final class Gandi
