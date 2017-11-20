@@ -40,11 +40,11 @@ final class Domain extends AbstractApi
     }
 
     /**
-     * @param array $options
+     * @param array|null $options
      *
      * @return array
      */
-    public function getList(array $options): array
+    public function getList(array $options = null): array
     {
         return $this->getGandi()->getClient()->domain->list($options);
     }
