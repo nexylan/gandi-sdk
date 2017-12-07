@@ -19,12 +19,12 @@ namespace Nexy\Gandi\Api;
 final class Operation extends AbstractApi
 {
     /**
-     * @param int $operationId
+     * @param int $id
      *
      * @return array
      */
-    final public function info(int $operationId): array
+    final public function info(int $id): array
     {
-        return $this->getGandi()->getClient()->operation->info($operationId);
+        return $this->getGandi()->getClient()->operation->info($id);
     }
 }

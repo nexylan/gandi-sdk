@@ -55,7 +55,7 @@ final class Domain extends AbstractApi
      *
      * @return array
      */
-    final public function create(string $domain, array $options = null): array
+    final public function create(string $domain, ?array $options = null): array
     {
         return $this->getGandi()->getClient()->domain->create($domain, $options);
     }
@@ -92,12 +92,12 @@ final class Domain extends AbstractApi
     }
 
     /**
-     * @param string $domain
-     * @param array  $options
+     * @param string     $domain
+     * @param array|null $options
      *
      * @return array
      */
-    final public function transferIn(string $domain, array $options = null): array
+    final public function transferIn(string $domain, ?array $options = null): array
     {
         return $this->getGandi()->getClient()->domain->transferin->proceed($domain, $options);
     }
