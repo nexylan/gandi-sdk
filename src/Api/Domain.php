@@ -50,6 +50,17 @@ final class Domain extends AbstractApi
     }
 
     /**
+     * @param string     $domain
+     * @param array|null $options
+     *
+     * @return array
+     */
+    final public function create(string $domain, array $options = null): array
+    {
+        return $this->getGandi()->getClient()->domain->create($domain, $options);
+    }
+
+    /**
      * @param array      $domain
      * @param array|null $options
      *
@@ -58,5 +69,48 @@ final class Domain extends AbstractApi
     public function renew(array $domain, array $options = null): array
     {
         return $this->getGandi()->getClient()->domain->renew($domain, $options);
+    }
+
+    /**
+     * @param string $domain
+     *
+     * @return bool
+     */
+    final public function isDeletable(string $domain): bool
+    {
+        return $this->getGandi()->getClient()->domain->delete->available($domain);
+    }
+
+    /**
+     * @param string $domain
+     *
+     * @return array
+     */
+    final public function delete(string $domain): array
+    {
+        return $this->getGandi()->getClient()->domain->delete->proceed($domain);
+    }
+
+    /**
+     * @param string $domain
+     * @param array  $options
+     *
+     * @return array
+     */
+    final public function transferIn(string $domain, array $options = null): array
+    {
+        return $this->getGandi()->getClient()->domain->transferin->proceed($domain, $options);
+    }
+
+    /**
+     * @param string     $domain
+     * @param array      $nameservers
+     * @param array|null $options
+     *
+     * @return array
+     */
+    final public function setNameservers(string $domain, array $nameservers, ?array $options = null): array
+    {
+        return $this->getGandi()->getClient()->domain->nameservers->set($domain, $nameservers, $options);
     }
 }

@@ -21,6 +21,7 @@ use Nexy\Gandi\Api\AbstractApi;
  * @method Api\Catalog catalog
  * @method Api\Contact contact
  * @method Api\Domain domain
+ * @method Api\Operation operation
  *
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
  */
