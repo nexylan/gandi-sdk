@@ -36,7 +36,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Nexy\SlackBundle\NexySlackBundle(),
+        new Nexy\Gandi\Bridge\Symfony\Bundle\NexyGandiBundle(),
     );
 
     // ...
