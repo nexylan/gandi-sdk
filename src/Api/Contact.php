@@ -13,38 +13,97 @@ declare(strict_types=1);
 
 namespace Nexy\Gandi\Api;
 
+use fXmlRpc\Proxy;
+
 /**
  * @author Jérôme Pogeant <p-jerome@hotmail.fr>
+ *
+ * @see http://doc.rpc.gandi.net/contact/reference.html
  */
 final class Contact extends AbstractApi
 {
-    /**
-     * @param array|null $options
-     *
-     * @return array
-     */
-    public function create(array $options = null): array
+    public function balance(): array
     {
-        return $this->getGandi()->getClient()->contact->create($options);
+        return $this->getContactClient()->balance();
     }
 
-    /**
-     * @param string $handle
-     *
-     * @return bool
-     */
+    public function canAssociate(array $contact, array $params): bool
+    {
+        return (bool) $this->getContactClient()->can_associate($contact, $params);
+    }
+
+    public function canAssociateDomain(string $handle, array $params): bool
+    {
+        return (bool) $this->getContactClient()->can_associate_domain($handle, $params);
+    }
+
+    public function count(array $options = null): int
+    {
+        return $this->getContactClient()->count($options);
+    }
+
+    public function create(array $params): array
+    {
+        return $this->getContactClient()->create($params);
+    }
+
     public function delete(string $handle): bool
     {
-        return $this->getGandi()->getClient()->contact->delete($handle);
+        return (bool) $this->getContactClient()->delete($handle);
     }
 
-    /**
-     * @param string $handle
-     *
-     * @return array
-     */
-    public function info(string $handle): array
+    public function info(string $handle = null): array
     {
-        return $this->getGandi()->getClient()->contact->info($handle);
+        return $this->getContactClient()->info($handle);
+    }
+
+    public function getList(array $options = null): array
+    {
+        return $this->getContactClient()->list($options);
+    }
+
+    public function release(string $handle): bool
+    {
+        return (bool) $this->getContactClient()->release($handle);
+    }
+
+    public function update(string $handle, array $params): bool
+    {
+        return (bool) $this->getContactClient()->update($handle, $params);
+    }
+
+    public function reachabilityResend(array $params): bool
+    {
+        return (bool) $this->getContactClient()->reachability->resend($params);
+    }
+
+    public function autofoaCount(array $options = null): int
+    {
+        return $this->getContactClient()->autofoa->count($options);
+    }
+
+    public function autofoaCreate(array $params = null): array
+    {
+        return $this->getContactClient()->autofoa->create($params);
+    }
+
+    public function autofoaDelete(int $autofoaId = null): array
+    {
+        return $this->getContactClient()->autofoa->delete($autofoaId);
+    }
+
+    public function autofoaInfo(string $handle = null): array
+    {
+        return $this->getContactClient()->autofoa->info($handle);
+    }
+
+    public function autofoaValidate(int $autofoaId, int $code): bool
+    {
+        return (bool) $this->getContactClient()->autofoa->validate($autofoaId, $code);
+    }
+
+    private function getContactClient(): Proxy
+    {
+        return $this->getGandi()->getClient()->contact;
     }
 }
