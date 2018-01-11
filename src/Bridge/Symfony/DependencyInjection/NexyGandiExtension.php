@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Nexy\Gandi\Bridge\Symfony\DependencyInjection;
 
+use Nexy\Gandi\Gandi;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -28,15 +30,18 @@ final class NexyGandiExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('sdk.xml');
+
         $config = $this->processConfiguration(
             $this->getConfiguration($configs, $container),
             $configs
         );
 
-        $container->setParameter('nexy_gandi.api_key', $config['api_key']);
-        $container->setParameter('nexy_gandi.api_url', $config['api_url']);
-
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('sdk.xml');
+        $container->getDefinition(Gandi::class)->setArguments([
+            $config['api_key'],
+            $config['api_url'],
+            new Reference($config['xml_rpc_client']),
+        ]);
     }
 }

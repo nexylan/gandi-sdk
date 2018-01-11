@@ -25,7 +25,29 @@ First of all, you need to require this library through Composer:
 composer require nexylan/gandi-sdk
 ```
 
-With Symfony:
+You must also install [xml rpc client dependencies](https://github.com/lstrojny/fxmlrpc#install-dependencies)
+
+## Basic usage
+
+Use the predefined methods and/or use Gandi methods directly
+
+```php
+$gandi = new Gandi('api_url', 'api_key');
+
+$result = $gandi->domain->info('mydomain.net');
+
+// Results
+// [
+//     status => [
+//         0 => clientTransferProhibited
+//     ]
+//     zone_id => 42
+//     fqdn => mydomain.net
+//     // ...
+// ]
+```
+
+## Symfony
 
 Enable the bundle on the `AppKernel` class:
 
@@ -45,7 +67,7 @@ public function registerBundles()
 }
 ```
 
-## Configuration
+### Configuration
 
 Configure the bundle to your needs:
 
@@ -56,22 +78,22 @@ parameters:
     gandi_api_url: https://rpc.ote.gandi.net/xmlrpc/
 ```
 
-
 ```yaml
 # config.yml
 nexy_gandi:
     api_url: %gandi_api_url%
     api_key: 'yourApiKey'
+    xml_rpc_client: 'nexy_gandi.default_xml_client_rpc' // your xml rpc client service
 ```
 
-## Usage
+### Usage
 
-Use the predefined methods and/or use Gandi methods directly
+You can inject `Nexy\Gandi\Gandi` or just call alias `nexy_gandi.sdk` from container
 
 ```php
-$gandi = new Gandi('api_url', 'api_key');
+<?php
 
-$result = $gandi->setup()->domain->info('mydomain.net');
+$result = $container->get('nexy_gandi.sdk')->getClient()->domain()->info('mydomain.net');
 
 // Results
 // [
