@@ -61,12 +61,12 @@ final class Domain extends AbstractApi
     }
 
     /**
-     * @param array      $domain
+     * @param string     $domain
      * @param array|null $options
      *
      * @return array
      */
-    public function renew(array $domain, array $options = null): array
+    public function renew(string $domain, array $options = null): array
     {
         return $this->getGandi()->getClient()->domain->renew($domain, $options);
     }
