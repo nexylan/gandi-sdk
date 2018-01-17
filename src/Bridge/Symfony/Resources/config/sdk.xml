@@ -5,9 +5,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="nexy_gandi.sdk" class="Nexy\Gandi\Gandi">
-            <argument>%nexy_gandi.api_key%</argument>
-            <argument>%nexy_gandi.api_url%</argument>
-        </service>
+        <service id="Nexy\Gandi\Gandi" class="Nexy\Gandi\Gandi" public="false"/>
+        <service id="nexy_gandi.sdk" alias="Nexy\Gandi\Gandi" public="true"/>
+        <!-- RPC clients -->
+        <service id="nexy_gandi.default_xml_client_rpc" class="fXmlRpc\Client" public="false"/>
     </services>
 </container>

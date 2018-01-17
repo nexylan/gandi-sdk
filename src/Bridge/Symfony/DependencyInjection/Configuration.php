@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Nexy\Gandi\Bridge\Symfony\DependencyInjection;
 
+use fXmlRpc\Client;
+use Nexy\Gandi\Gandi;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -31,8 +33,23 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('api_key')->end()
-                ->scalarNode('api_url')->end()
+                ->scalarNode('api_key')
+                    ->isRequired()
+                    ->info('Gandi api key')
+                ->end()
+                ->scalarNode('api_url')
+                    ->defaultNull()
+                    ->info(sprintf('Gandi remote api endpoint (for default value see: "%s::DEFAULT_API_URL".', Gandi::class))
+                ->end()
+                ->scalarNode('xml_rpc_client')
+                    ->defaultValue('nexy_gandi.default_xml_client_rpc')
+                    ->info(
+                        sprintf(
+                            'XML RPC client service. The service must be an instance of "%s"',
+                            Client::class
+                        )
+                    )
+                ->end()
             ->end()
         ;
 
