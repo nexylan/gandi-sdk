@@ -40,11 +40,11 @@ final class Gandi
     private $apis;
 
     /**
-     * @param string             $apiKey
-     * @param null|string        $apiUrl
-     * @param FxmlrpcClient|null $xmlClient
+     * @param string               $apiKey
+     * @param null|string          $apiUrl
+     * @param ClientInterface|null $xmlClient
      */
-    public function __construct(string $apiKey, ?string $apiUrl = null, ?FxmlrpcClient $xmlClient = null)
+    public function __construct(string $apiKey, ?string $apiUrl = null, ?ClientInterface $xmlClient = null)
     {
         $xmlClient = $xmlClient ?: new FxmlrpcClient();
         $xmlClient->setUri($apiUrl ?: static::DEFAULT_API_URL);
