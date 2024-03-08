@@ -113,4 +113,23 @@ final class Domain extends AbstractApi
     {
         return $this->getGandi()->getClient()->domain->nameservers->set($domain, $nameservers, $options);
     }
+
+
+    /**
+     * @param string $domain
+     * @return array
+     */
+    final public function transferLock(string $domain): array
+    {
+        return $this->getGandi()->getClient()->domain->status->lock($domain);
+    }
+
+    /**
+     * @param string $domain
+     * @return array
+     */
+    final public function transferUnlock(string $domain): array
+    {
+        return $this->getGandi()->getClient()->domain->status->unlock($domain);
+    }
 }
