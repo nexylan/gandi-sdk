@@ -1,6 +1,11 @@
 # Gandi SDK
 
-Gandi API PHP SDK.
+Gandi API V3 PHP SDK.
+
+**Gandi SDK will stop being maintained at the end of december 2025.**
+
+Please, move to Gandi API V5 at your earliest convenience.
+See https://api.gandi.net/docs/ for more information.
 
 [![Latest Stable Version](https://poser.pugx.org/nexylan/gandi-sdk/v/stable)](https://packagist.org/packages/nexylan/gandi-sdk)
 [![Latest Unstable Version](https://poser.pugx.org/nexylan/gandi-sdk/v/unstable)](https://packagist.org/packages/nexylan/gandi-sdk)
